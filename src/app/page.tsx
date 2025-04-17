@@ -1,103 +1,148 @@
-import Image from "next/image";
+'use client';
+
+import { motion } from 'framer-motion';
+import { BsCamera } from 'react-icons/bs';
+import { FiUpload } from 'react-icons/fi';
+import { BsCheckCircle, BsClock, BsDot, BsXCircle, BsBandaid, BsExclamationTriangle } from 'react-icons/bs';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="container-fluid px-0">
+      {/* Hero Section */}
+      <div className="hero-gradient py-5 mb-5">
+        <div className="container py-5">
+          <div className="row align-items-center">
+            <div className="col-lg-6">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <h1 className="display-4 fw-bold mb-3">
+                  <span className="text-gradient">Tri Automatique</span>
+                  <br />
+                  des Prunes
+                </h1>
+                <p className="lead mb-4 text-gray-600">
+                  Utilisez l'intelligence artificielle pour analyser et classifier vos prunes
+                  en quelques secondes. Simple, rapide et précis.
+                </p>
+                <div className="d-flex gap-3">
+                  <button className="btn btn-primary btn-lg shadow-sm">
+                    Commencer l'analyse
+                  </button>
+                  <button className="btn btn-outline-primary btn-lg">
+                    En savoir plus
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+            <div className="col-lg-6">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-center"
+              >
+                <img
+                  src="/image/icon.png"
+                  alt="Analyse de prunes"
+                  className="img-fluid rounded-4 shadow-lg"
+                  style={{ maxHeight: '400px', objectFit: 'cover' }}
+                />
+              </motion.div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      {/* Upload Section */}
+      <div className="container mb-5">
+        <h2 className="text-center h1 mb-5">
+          Comment ça marche ?
+        </h2>
+        <div className="row g-4 justify-content-center">
+          <div className="col-md-6">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="card h-100 border-0 shadow-sm"
+            >
+              <div className="card-body text-center p-5">
+                <div className="display-1 text-primary mb-3">
+                  <BsCamera />
+                </div>
+                <h3 className="card-title h4 mb-3">Prendre une photo</h3>
+                <p className="card-text text-muted mb-4">
+                  Utilisez votre caméra pour prendre une photo en temps réel
+                  de vos prunes à analyser.
+                </p>
+                <button className="btn btn-primary">
+                  Ouvrir la caméra
+                </button>
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="col-md-6">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="card h-100 border-0 shadow-sm"
+            >
+              <div className="card-body text-center p-5">
+                <div className="display-1 text-primary mb-3">
+                  <FiUpload />
+                </div>
+                <h3 className="card-title h4 mb-3">Importer une image</h3>
+                <p className="card-text text-muted mb-4">
+                  Sélectionnez une image depuis votre galerie
+                  pour une analyse instantanée.
+                </p>
+                <button className="btn btn-primary">
+                  Parcourir les fichiers
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* Categories Section */}
+      <div className="bg-light py-5">
+        <div className="container py-4">
+          <h2 className="text-center h1 mb-5">
+            Catégories de prunes
+          </h2>
+          <div className="row g-4">
+            {[
+              { name: 'Bonne qualité', Icon: BsCheckCircle, color: 'success', description: 'Prunes parfaites pour la consommation' },
+              { name: 'Non mûre', Icon: BsClock, color: 'warning', description: 'Nécessite plus de temps de maturation' },
+              { name: 'Tachetée', Icon: BsDot, color: 'info', description: 'Présence de taches superficielles' },
+              { name: 'Fissurée', Icon: BsXCircle, color: 'danger', description: 'Présence de fissures sur la peau' },
+              { name: 'Meurtrie', Icon: BsBandaid, color: 'secondary', description: 'Zones meurtries ou abîmées' },
+              { name: 'Pourrie', Icon: BsExclamationTriangle, color: 'dark', description: 'Non consommable' },
+            ].map((category, index) => (
+              <div key={category.name} className="col-md-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="card border-0 shadow-sm h-100"
+                >
+                  <div className="card-body p-4">
+                    <div className={`text-${category.color} mb-3 display-5`}>
+                      <category.Icon />
+                    </div>
+                    <h4 className="card-title h5 mb-2">{category.name}</h4>
+                    <p className="card-text text-muted small">
+                      {category.description}
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
