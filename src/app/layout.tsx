@@ -1,3 +1,4 @@
+import React from 'react';
 import './globals.css';
 import { Inter } from 'next/font/google';
 import Navigation from '@/components/Navigation';
@@ -13,13 +14,13 @@ export const metadata = {
   description: 'Application web pour le tri automatique des prunes - JCIA Hackathon 2025',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   // Check if we're on a public page (onboarding, login, register)
-  const headersList = headers();
+  const headersList = await headers();
   const pathname = headersList.get("x-pathname") || "";
   const isPublicPage = pathname.includes("/auth/") || pathname.includes("/onboarding");
 

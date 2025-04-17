@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { BsCamera } from 'react-icons/bs';
 import { FiUpload } from 'react-icons/fi';
 import { BsCheckCircle, BsClock, BsDot, BsXCircle, BsBandaid, BsExclamationTriangle } from 'react-icons/bs';
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -24,12 +25,12 @@ export default function Home() {
                   des Prunes
                 </h1>
                 <p className="lead mb-4 text-gray-600">
-                  Utilisez l'intelligence artificielle pour analyser et classifier vos prunes
+                  Utilisez l&apos;intelligence artificielle pour analyser et classifier vos prunes
                   en quelques secondes. Simple, rapide et précis.
                 </p>
                 <div className="d-flex gap-3">
                   <button className="btn btn-primary btn-lg shadow-sm">
-                    Commencer l'analyse
+                    Commencer l&apos;analyse
                   </button>
                   <button className="btn btn-outline-primary btn-lg">
                     En savoir plus
@@ -44,11 +45,13 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-center"
               >
-                <img
+                <Image
                   src="/image/icon.png"
                   alt="Analyse de prunes"
                   className="img-fluid rounded-4 shadow-lg"
                   style={{ maxHeight: '400px', objectFit: 'cover' }}
+                  width={400}
+                  height={400}
                 />
               </motion.div>
             </div>

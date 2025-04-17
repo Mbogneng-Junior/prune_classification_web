@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { BsCamera } from 'react-icons/bs';
 import { FiUpload } from 'react-icons/fi';
-import { BsCheckCircle, BsClock, BsDot, BsXCircle, BsBandaid, BsExclamationTriangle } from 'react-icons/bs';
 
 export default function Dashboard() {
   return (

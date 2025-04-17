@@ -46,7 +46,7 @@ export default function Sidebar() {
               className={`sidebar-item d-flex align-items-center text-decoration-none p-3 mb-2 rounded-lg transition-all ${
                 isActive 
                   ? 'bg-teal-50 text-teal-600 font-medium'
-                  : 'text-gray-600 hover:bg-gray-50'
+                  : 'text-black-600 hover:bg-gray-50'
               }`}
             >
               <Icon className="me-3" size={20} />
