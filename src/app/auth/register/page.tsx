@@ -1,12 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export default function Register() {
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -26,9 +24,18 @@ export default function Register() {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate registration
-    localStorage.setItem('isAuthenticated', 'true');
-    router.push('/');
+    try {
+      // Définir les cookies pour l'authentification et l'onboarding
+      document.cookie = 'isAuthenticated=true; path=/';
+      document.cookie = 'hasSeenOnboarding=true; path=/';
+      
+      // Rediriger vers le dashboard
+      window.location.href = '/dashboard';
+    } catch (error) {
+      console.error('Registration error:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

@@ -1,12 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export default function Login() {
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -24,9 +22,18 @@ export default function Login() {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate login
-    localStorage.setItem('isAuthenticated', 'true');
-    router.push('/dashboard');
+    try {
+      // Définir les cookies pour l'authentification et l'onboarding
+      document.cookie = 'isAuthenticated=true; path=/';
+      document.cookie = 'hasSeenOnboarding=true; path=/';
+      
+      // Rediriger vers le dashboard
+      window.location.href = '/dashboard';
+    } catch (error) {
+      console.error('Login error:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

@@ -26,24 +26,31 @@ const slides = [
     ),
     title: "Obtenez des résultats instantanés",
     description: "Notre modèle IA classifie votre prune et vous fournit des conseils adaptés.",
-    buttonText: "Continuer"
+    buttonText: "Commencer"
   }
 ];
 
 export default function Onboarding() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isNavigating, setIsNavigating] = useState(false);
   const router = useRouter();
+
+  const goToLogin = () => {
+    setIsNavigating(true);
+    localStorage.setItem('hasSeenOnboarding', 'true');
+    router.push('/auth/login');
+  };
 
   const handleNext = () => {
     if (currentSlide === slides.length - 1) {
-      router.push('/auth/login');
+      goToLogin();
     } else {
       setCurrentSlide(prev => prev + 1);
     }
   };
 
   const handleSkip = () => {
-    router.push('/auth/login');
+    goToLogin();
   };
 
   return (
@@ -77,8 +84,8 @@ export default function Onboarding() {
                     key={index}
                     className={`h-2 rounded-full transition-all duration-300 ${
                       index === currentSlide 
-                        ? 'w-8 bg-teal-600' 
-                        : 'w-2 bg-gray-300'
+                        ? "w-8 bg-teal-600" 
+                        : "w-2 bg-gray-300"
                     }`}
                   />
                 ))}
@@ -86,19 +93,31 @@ export default function Onboarding() {
             </motion.div>
           </AnimatePresence>
 
-          <div className="flex flex-col gap-4">
-            <button
+          <div className="flex flex-col gap-3">
+            <motion.button
               onClick={handleNext}
-              className="bg-teal-600 text-white py-4 px-6 rounded-xl font-medium hover:bg-teal-700 transition-colors flex items-center justify-center gap-2"
+              disabled={isNavigating}
+              className={`bg-green-600 text-white py-2.5 px-6 rounded-xl font-medium hover:bg-green-700 transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md ${
+                isNavigating ? "opacity-75 cursor-not-allowed" : ""
+              }`}
+              whileHover={{ scale: isNavigating ? 1 : 1.02 }}
+              whileTap={{ scale: isNavigating ? 1 : 0.98 }}
             >
-              {slides[currentSlide].buttonText}
-              <BsArrowRight />
-            </button>
+              <span>{isNavigating ? "Chargement..." : slides[currentSlide].buttonText}</span>
+              {!isNavigating && (
+                <motion.div
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.5 }}
+                >
+                  <BsArrowRight size={18} />
+                </motion.div>
+              )}
+            </motion.button>
             
-            {currentSlide < slides.length - 1 && (
+            {currentSlide < slides.length - 1 && !isNavigating && (
               <button
                 onClick={handleSkip}
-                className="text-gray-500 py-2 hover:text-gray-700 transition-colors"
+                className="text-gray-500 py-2 hover:text-gray-700 transition-colors text-sm"
               >
                 Passer
               </button>
